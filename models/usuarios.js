@@ -21,3 +21,4 @@ const User = mongoose.model('User',usuarioSchema)
 
 //se exporta como modulo
 module.exports = User
+//hola
