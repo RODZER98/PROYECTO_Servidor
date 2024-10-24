@@ -18,5 +18,39 @@ userRouter.post('/', (request, response)=>{
         return response.status(400).json({error:'Todos los campos son obligatorios'})
     }else{
         //guardar en la bd
+        let usuario = new User();
+        usuario.nombre = nombre
+
+
+        async function guardarUsuario(){
+            await usuario.save()
+
+            const listUsuarios = await User.find()
+            console.log(listUsuarios)
+        }
+
+        guardarUsuario().catch(console.error)
+
+        return response.status(200).json({msg:'Se ha creado el nuevo usuario'})
     }
 })
+
+//consultar
+userRouter.get('/consultar-user',async(req,res)=>{
+
+})
+
+//obtener lista de usuarios
+userRouter.get('/lista-users',async(req,res)=>{
+    try{
+        const listado = await User.find()
+        return res.status(200).json({textOk:true,data:listado})
+
+    }catch(error){
+        return res.status(400).json({error:'Ha ocurrido un error'})
+    }
+})
+
+module.exports = userRouter
+
+//dentro de los controladores van todas las funciones de CRUD
