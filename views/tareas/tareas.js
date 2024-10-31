@@ -48,10 +48,26 @@ formulario.addEventListener('submit', async e=>{
     })
     obtenerLista();
     
+    const newTask={
+        texto:inputF.value
+    }
+    console.log(newTask)
+    const response = await axios.post('/api/task',newTask)//axios da mejores facilidades para el backend
+    console.log(response)
+
+    notificacion.innerHTML = `la tarea${createInput.value} se ha creado correctamente`
+    notificacion.classList.add('show-notification')
+
+    setTimeout(()=>{
+        notificacion.classList.remove('show-notification')
+    },2000)
+
+    createInput.value = ""
+}
     //const users = await respuesta.json()
 
     //const user = users.find(i=>i.nombre===loginInput.value)
-})
+)
 
 lista.addEventListener('click', async e=>{
     if(e.target.classList.contains('delete-btn')){

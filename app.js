@@ -4,6 +4,7 @@ const app = express()
 const path = require('path')
 //const port = process.env.PORT||3000 //sirve para crear el puerto pero lo haremos de otra manera
 const userRouter = require('./controllers/usuario')
+const taskRouter = require('./controllers/tarea')
 const mongoose = require('mongoose')
 
 //conexion mongoDB
@@ -24,5 +25,6 @@ app.use(express.json())
 
 //crear rutas de backend
 app.use('/api/users', userRouter)
+app.use('/api/task', taskRouter)
 
 module.exports= app
